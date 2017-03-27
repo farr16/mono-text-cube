@@ -27,7 +27,7 @@ public class MonoTextCube {
 		System.out.println("Filtered input: " + input);
 		
 		int val = validateInput(input);
-		if (val > 0)
+		if (val != VALID_INPUT)
 		{
 			String errorMsg = "";
 			if (val == ERROR_SHORT_INPUT || val == ERROR_SHORT_NON_SYMMETRIC_INPUT)
