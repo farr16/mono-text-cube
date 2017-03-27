@@ -26,9 +26,20 @@ public class MonoTextCube {
 		input = filterInput(input);
 		System.out.println("Filtered input: " + input);
 		
-		int check = checkInput(input);
-		// Test print error msg numbers
-		System.out.println("Check input: " + check);
+		int val = validateInput(input);
+		if (val > 0)
+		{
+			String errorMsg = "";
+			if (val == ERROR_SHORT_INPUT || val == ERROR_SHORT_NON_SYMMETRIC_INPUT)
+				errorMsg += "\nString must be at least 5 characters after filtering";
+			if (val == ERROR_NON_SYMMETRIC_INPUT || val == ERROR_SHORT_NON_SYMMETRIC_INPUT)
+				errorMsg += "\nString must begin and end with the same character after filtering";
+			
+			System.out.print("\nERROR: " + errorMsg + "\n");
+			System.exit(0);
+		}
+		
+		System.out.println("Input accepted!");
 	}
 	
 	/**
@@ -46,14 +57,14 @@ public class MonoTextCube {
 	}
 	
 	/**
-	 * checkInput
+	 * validateInput
 	 * 
 	 * Method for checking the filtered input string is long enough to create a cube with distinct
 	 * front and back faces and that the first and last letter of the string are the same
 	 *
 	 * @param str: The filtered input string
 	 */
-	private static int checkInput(String str)
+	private static int validateInput(String str)
 	{
 		int value = 0;
 		
